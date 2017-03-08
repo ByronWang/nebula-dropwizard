@@ -1,1 +1,1 @@
-web: java -jar target/original-nebula-dropwizard-1.0-SNAPSHOT.jar
+web: java -jar target/original-nebula-dropwizard-1.0-SNAPSHOT.jar server nebula-dropwizard.yml
