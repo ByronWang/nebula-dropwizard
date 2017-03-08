@@ -1,1 +1,1 @@
-web: java -jar target/original-nebula-dropwizard-1.0-SNAPSHOT.jar server nebula-dropwizard.yml
+web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT  -jar target/original-nebula-dropwizard-1.0-SNAPSHOT.jar server nebula-dropwizard.yml
