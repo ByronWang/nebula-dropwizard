@@ -1,0 +1,1 @@
+web: java -jar target/original-nebula-dropwizard-1.0-SNAPSHOT.jar
