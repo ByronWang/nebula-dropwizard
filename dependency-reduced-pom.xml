@@ -47,6 +47,7 @@
         <configuration>
           <archive>
             <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addClasspath>true</addClasspath>
               <mainClass>${mainClass}</mainClass>
             </manifest>
@@ -119,7 +120,7 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <dropwizard.version>0.9.1</dropwizard.version>
+    <dropwizard.version>1.0.6</dropwizard.version>
     <mainClass>com.nebula.dropwizard.DropwizardApplication</mainClass>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
