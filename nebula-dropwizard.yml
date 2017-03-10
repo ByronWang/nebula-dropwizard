@@ -4,7 +4,7 @@ defaultName: Stranger
 server:
   type: simple
   applicationContextPath: /
-  adminContextPath: /admin
+  adminContextPath: /monitoring-admin
   connector:
     type: http
     port: 8080
