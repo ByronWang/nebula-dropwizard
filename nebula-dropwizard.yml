@@ -2,9 +2,18 @@ template: Hello, %s!
 defaultName: Stranger
 
 server:
-  applicationConnectors:
-    - type: http
-      port: 8080
-  adminConnectors:
-    - type: http
-      port: 8081
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8080
+metrics:
+  reporters:
+    - type: graphite
+      host: localhost
+      port: 22003
+      prefix: nebula-dropwizard
+    - type: log
+      logger: metrics
+      markerName: nebula-dropwizard
