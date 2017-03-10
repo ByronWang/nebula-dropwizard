@@ -7,10 +7,10 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-public class DropwizardApplication extends Application<DropwizardConfiguration> {
+public class NebulaApplication extends Application<NebulaConfiguration> {
 
     public static void main(final String[] args) throws Exception {
-        new DropwizardApplication().run(args);
+        new NebulaApplication().run(args);
     }
 
     @Override
@@ -19,12 +19,12 @@ public class DropwizardApplication extends Application<DropwizardConfiguration> 
     }
 
     @Override
-    public void initialize(final Bootstrap<DropwizardConfiguration> bootstrap) {
+    public void initialize(final Bootstrap<NebulaConfiguration> bootstrap) {
         // TODO: application initialization
     }
 
     @Override
-    public void run(final DropwizardConfiguration configuration,
+    public void run(final NebulaConfiguration configuration,
                     final Environment environment) {
     	
         final HelloWorldResource resource = new HelloWorldResource(

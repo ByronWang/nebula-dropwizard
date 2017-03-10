@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>1.0.6</dropwizard.version>
-        <mainClass>com.nebula.dropwizard.DropwizardApplication</mainClass>
+        <mainClass>com.nebula.dropwizard.NebulaApplication</mainClass>
     </properties>
 
     <dependencyManagement>
@@ -63,6 +63,10 @@
 		<dependency>
 			<groupId>io.dropwizard</groupId>
 			<artifactId>dropwizard-assets</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard</groupId>
+			<artifactId>dropwizard-metrics-graphite</artifactId>
 		</dependency>
 	</dependencies>
 
