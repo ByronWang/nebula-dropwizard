@@ -25,98 +25,62 @@ public class TodoDump implements Opcodes {
 			fv.visitEnd();
 		}
 		{
-			mv = cw.visitMethod(ACC_PUBLIC, "<init>", "(Lnebula/define/YesNo;Lnebula/define/Title;)V", null, null);
+			fv = cw.visitField(0, "age", "Lnebula/define/Age;", null, null);
+			fv.visitEnd();
+		}
+		{
+			mv = cw.visitMethod(ACC_PUBLIC, "<init>", "(Lnebula/define/YesNo;Lnebula/define/Title;Lnebula/define/Age;)V", null, null);
 			mv.visitParameter("completed", 0);
 			mv.visitParameter("title", 0);
+			mv.visitParameter("age", 0);
 			mv.visitCode();
-			Label l0 = new Label();
-			mv.visitLabel(l0);
-			mv.visitLineNumber(11, l0);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
-			Label l1 = new Label();
-			mv.visitLabel(l1);
-			mv.visitLineNumber(12, l1);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 1);
 			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "completed", "Lnebula/define/YesNo;");
-			Label l2 = new Label();
-			mv.visitLabel(l2);
-			mv.visitLineNumber(13, l2);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 2);
 			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "title", "Lnebula/define/Title;");
-			Label l3 = new Label();
-			mv.visitLabel(l3);
-			mv.visitLineNumber(14, l3);
+			mv.visitVarInsn(ALOAD, 0);
+			mv.visitVarInsn(ALOAD, 3);
+			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "age", "Lnebula/define/Age;");
 			mv.visitInsn(RETURN);
-			Label l4 = new Label();
-			mv.visitLabel(l4);
-			mv.visitLocalVariable("this", "Lcom/nebula/dropwizard/core/Todo;", null, l0, l4, 0);
-			mv.visitLocalVariable("completed", "Lnebula/define/YesNo;", null, l0, l4, 1);
-			mv.visitLocalVariable("title", "Lnebula/define/Title;", null, l0, l4, 2);
-			mv.visitMaxs(2, 3);
 			mv.visitEnd();
 		}
+		
 		{
 			mv = cw.visitMethod(ACC_PUBLIC, "changeTitle", "(Lnebula/define/Title;)V", null, null);
 			mv.visitParameter("title", 0);
 			mv.visitCode();
-			Label l0 = new Label();
-			mv.visitLabel(l0);
-			mv.visitLineNumber(17, l0);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 1);
 			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "title", "Lnebula/define/Title;");
-			
-
-			Label l1 = new Label();
-			mv.visitLabel(l1);
-			mv.visitLineNumber(18, l1);
 			mv.visitInsn(RETURN);
-			Label l2 = new Label();
-			mv.visitLabel(l2);
-			mv.visitLocalVariable("this", "Lcom/nebula/dropwizard/core/Todo;", null, l0, l2, 0);
-			mv.visitLocalVariable("title", "Lnebula/define/Title;", null, l0, l2, 1);
-			mv.visitMaxs(2, 2);
 			mv.visitEnd();
 		}
 		{
 			mv = cw.visitMethod(ACC_PUBLIC, "changeCompleted", "(Lnebula/define/YesNo;)V", null, null);
 			mv.visitParameter("completed", 0);
 			mv.visitCode();
-			Label l0 = new Label();
-			mv.visitLabel(l0);
-			mv.visitLineNumber(21, l0);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 1);
 			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "completed", "Lnebula/define/YesNo;");
-//			mv.visitVarInsn(ALOAD, 0);
-//			mv.visitVarInsn(ALOAD, 1);
-//			mv.visitMethodInsn(INVOKEVIRTUAL, "com/nebula/dropwizard/core/Todo2", "setCompleted", "(Lnebula/define/YesNo;)V", false);
-
-			Label l1 = new Label();
-			mv.visitLabel(l1);
-			mv.visitLineNumber(22, l1);
+			mv.visitVarInsn(ALOAD, 0);
+			mv.visitVarInsn(ALOAD, 0);
+			mv.visitFieldInsn(GETFIELD, "com/nebula/dropwizard/core/Todo", "age", "Lnebula/define/Age;");
+			mv.visitInsn(ICONST_1);
+			mv.visitMethodInsn(INVOKESTATIC, "nebula/define/R", "of", "(I)Lnebula/define/Long;", true);
+			mv.visitTypeInsn(CHECKCAST, "nebula/define/Age");
+			mv.visitMethodInsn(INVOKEINTERFACE, "nebula/define/Age", "$plus", "(Lnebula/define/Age;)Lnebula/define/Age;", true);
+			mv.visitFieldInsn(PUTFIELD, "com/nebula/dropwizard/core/Todo", "age", "Lnebula/define/Age;");
 			mv.visitInsn(RETURN);
-			Label l2 = new Label();
-			mv.visitLabel(l2);
-			mv.visitLocalVariable("this", "Lcom/nebula/dropwizard/core/Todo;", null, l0, l2, 0);
-			mv.visitLocalVariable("completed", "Lnebula/define/YesNo;", null, l0, l2, 1);
-			mv.visitMaxs(2, 2);
 			mv.visitEnd();
 		}
 		{
 			mv = cw.visitMethod(ACC_PUBLIC, "delete", "()V", null, null);
 			mv.visitCode();
-			Label l0 = new Label();
-			mv.visitLabel(l0);
-			mv.visitLineNumber(26, l0);
 			mv.visitInsn(RETURN);
-			Label l1 = new Label();
-			mv.visitLabel(l1);
-			mv.visitLocalVariable("this", "Lcom/nebula/dropwizard/core/Todo;", null, l0, l1, 0);
-			mv.visitMaxs(0, 1);
 			mv.visitEnd();
 		}
 		cw.visitEnd();

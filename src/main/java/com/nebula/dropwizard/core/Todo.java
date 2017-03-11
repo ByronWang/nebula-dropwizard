@@ -10,6 +10,10 @@ public class Todo {
 	Title title;
 	Age age;
 
+	public Todo() {
+		super();
+	}
+
 	public Todo(YesNo completed, Title title, Age age) {
 		super();
 		this.completed = completed;

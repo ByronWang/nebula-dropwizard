@@ -1,19 +1,18 @@
 package com.nebula.dropwizard.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ARETURN;
+import static org.objectweb.asm.Opcodes.GETFIELD;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static org.objectweb.asm.Opcodes.PUTFIELD;
+import static org.objectweb.asm.Opcodes.RETURN;
 
-import org.objectweb.asm.AnnotationVisitor;
-import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.Handle;
-import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
-import org.objectweb.asm.TypePath;
-import static org.objectweb.asm.Opcodes.*;
 
 public class DomainMaker extends ClassVisitor {
 	Type type;
@@ -35,57 +34,59 @@ public class DomainMaker extends ClassVisitor {
 	}
 
 	@Override
-	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
-		return super.visitField(access, name, desc, signature, value);
+	public FieldVisitor visitField(int access, String fieldName, String desc, String signature, Object value) {
+		//
+		MethodVisitor mv = null;
+		Type fieldType = Type.getType(desc);
+
+		{
+			String methodDescriptor = Type.getMethodDescriptor(fieldType, new Type[] {});
+			mv = super.visitMethod(ACC_PUBLIC, "get" + toBeanProperties(fieldName), methodDescriptor, null, null);
+			mv.visitCode();
+			mv.visitVarInsn(ALOAD, 0);
+			mv.visitFieldInsn(GETFIELD, typeDescriptor, "completed", desc);
+			mv.visitInsn(ARETURN);
+			mv.visitMaxs(0, 1);
+			mv.visitEnd();
+		}
+
+		{
+			String methodDescriptor = Type.getMethodDescriptor(Type.VOID_TYPE, new Type[] { fieldType });
+			mv = super.visitMethod(ACC_PUBLIC, "set" + toBeanProperties(fieldName), methodDescriptor, null, null);
+			mv.visitParameter(fieldName, 0);
+			mv.visitCode();
+			mv.visitVarInsn(ALOAD, 0);
+			mv.visitVarInsn(ALOAD, 1);
+			mv.visitFieldInsn(PUTFIELD, typeDescriptor, fieldName, desc);
+			mv.visitInsn(RETURN);
+			mv.visitMaxs(0, 1);
+			mv.visitEnd();
+		}
+
+		FieldVisitor fv = super.visitField(access, fieldName, desc, signature, value);
+		return fv;
 	}
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
 		MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
-		TypeMakerMethodVisitor methodVisitor = new TypeMakerMethodVisitor(api, mv, access, name, desc, signature,
-				exceptions);
+		TypeMakerMethodVisitor methodVisitor = new TypeMakerMethodVisitor(api, mv);
 		return methodVisitor;
 	}
 
 	class TypeMakerMethodVisitor extends MethodVisitor {
-		String[] types = new String[100];
-
-		public TypeMakerMethodVisitor(int api, MethodVisitor mv, int access, String name, String desc, String signature,
-				String[] exceptions) {
+		public TypeMakerMethodVisitor(int api, MethodVisitor mv) {
 			super(api, mv);
-			int i = 0;
-			types[i++] = typeDescriptor;
-			for (Type type : Type.getArgumentTypes(desc)) {
-				types[i++] = type.getClassName();
-			}
-		}
-
-		List<Integer> stack = new ArrayList<>();
-
-		@Override
-		public void visitVarInsn(int opcode, int var) {
-			super.visitVarInsn(opcode, var);
-			stack.add(var);
 		}
 
 		@Override
 		public void visitFieldInsn(int opcode, String owner, String name, String desc) {
-			// TODO Auto-generated method stub
 			if (opcode == Opcodes.PUTFIELD) {
-				// mv.visitVarInsn(ALOAD, 0);
-				// mv.visitVarInsn(ALOAD, 1);
-				// mv.visitFieldInsn(PUTFIELD,
-				// "com/nebula/dropwizard/core/Todo", "completed",
-				// "Lnebula/define/YesNo;");
-				// mv.visitVarInsn(ALOAD, 0);
-				// mv.visitVarInsn(ALOAD, 1);
-
-				String op1 = types[stack.get(stack.size() - 2)];
-				String op2 = types[stack.get(stack.size() - 1)];
-				String methodDescriptor = Type.getMethodDescriptor(Type.VOID_TYPE, new Type[] { Type.getType(op2) });
-				super.visitMethodInsn(INVOKEVIRTUAL, op1, "set" + toBeanProperties(name), methodDescriptor, false);
-			}else{
-				super.visitFieldInsn(opcode, owner, name, desc);
+				String methodDescriptor = Type.getMethodDescriptor(Type.VOID_TYPE, new Type[] { Type.getMethodType(desc) });
+				super.visitMethodInsn(INVOKEVIRTUAL, owner, "set" + toBeanProperties(name), methodDescriptor, false);
+			} else if (opcode == Opcodes.GETFIELD) {
+				String methodDescriptor = Type.getMethodDescriptor(Type.getMethodType(desc), new Type[] {});
+				mv.visitMethodInsn(INVOKEVIRTUAL, owner, "get" + toBeanProperties(name), methodDescriptor, false);
 			}
 		}
 
