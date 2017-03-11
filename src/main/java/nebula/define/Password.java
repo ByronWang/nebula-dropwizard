@@ -1,7 +1,6 @@
 package nebula.define;
 
-import nebula.define.Mask;
-import nebula.define.String;
+import nebula.define.annotation.Mask;
 
 @Mask
 public interface Password extends String {

@@ -1,8 +1,7 @@
 package nebula.define;
 
-import nebula.define.Desc;
-import nebula.define.MaxLength;
-import nebula.define.String;
+import nebula.define.annotation.Desc;
+import nebula.define.annotation.MaxLength;
 
 @MaxLength(20)
 @Desc("条形码")

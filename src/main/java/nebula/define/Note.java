@@ -1,10 +1,9 @@
 package nebula.define;
 
-import nebula.define.Desc;
-import nebula.define.FormatType;
-import nebula.define.MaxLength;
-import nebula.define.SingleLine;
-import nebula.define.Text;
+import nebula.define.annotation.Desc;
+import nebula.define.annotation.FormatType;
+import nebula.define.annotation.MaxLength;
+import nebula.define.annotation.SingleLine;
 
 @MaxLength ( 4000)
 @FormatType ( "textarea")

@@ -1,7 +1,6 @@
 package nebula.define;
 
-import nebula.define.Long;
-import nebula.define.MaxLength;
+import nebula.define.annotation.MaxLength;
 
 @MaxLength(15)
 public interface Count /*|zh:数量 */ extends Long {

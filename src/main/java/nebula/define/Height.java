@@ -1,9 +1,8 @@
 package nebula.define;
 
-import nebula.define.InputSize;
-import nebula.define.Long;
-import nebula.define.MaxLength;
-import nebula.define.Uom;
+import nebula.define.annotation.InputSize;
+import nebula.define.annotation.MaxLength;
+import nebula.define.annotation.Uom;
 
 @InputSize ("small")
 @Uom ("cm")

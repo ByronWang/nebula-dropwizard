@@ -1,8 +1,7 @@
 package nebula.define;
 
-import nebula.define.MaxLength;
-import nebula.define.SingleLine;
-import nebula.define.String;
+import nebula.define.annotation.MaxLength;
+import nebula.define.annotation.SingleLine;
 
 @MaxLength(80)
 @SingleLine

@@ -1,7 +1,7 @@
 package nebula.define;
 
-import nebula.define.Format;
-import nebula.define.FormatType;
+import nebula.define.annotation.Format;
+import nebula.define.annotation.FormatType;
 
 @FormatType("birthday")
 @Format("mm-dd")

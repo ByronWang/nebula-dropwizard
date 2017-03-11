@@ -1,8 +1,7 @@
 package nebula.define;
 
-import nebula.define.Long;
-import nebula.define.Max;
-import nebula.define.Min;
+import nebula.define.annotation.Max;
+import nebula.define.annotation.Min;
 
 @Max(12)
 @Min(1)

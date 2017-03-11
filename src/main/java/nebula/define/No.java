@@ -1,9 +1,8 @@
 package nebula.define;
 
-import nebula.define.FormatType;
-import nebula.define.MaxLength;
-import nebula.define.MinLength;
-import nebula.define.String;
+import nebula.define.annotation.FormatType;
+import nebula.define.annotation.MaxLength;
+import nebula.define.annotation.MinLength;
 
 @FormatType ( "numeric")
 @MaxLength (60)

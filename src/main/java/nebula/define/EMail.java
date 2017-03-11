@@ -1,9 +1,8 @@
 package nebula.define;
 
-import nebula.define.FormatType;
-import nebula.define.InputSize;
-import nebula.define.MaxLength;
-import nebula.define.String;
+import nebula.define.annotation.FormatType;
+import nebula.define.annotation.InputSize;
+import nebula.define.annotation.MaxLength;
 
 @FormatType ( "email")
 @InputSize ( "large")

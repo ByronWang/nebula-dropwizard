@@ -1,9 +1,8 @@
 package nebula.define;
 
-import nebula.define.Desc;
-import nebula.define.MaxLength;
-import nebula.define.SingleLine;
-import nebula.define.String;
+import nebula.define.annotation.Desc;
+import nebula.define.annotation.MaxLength;
+import nebula.define.annotation.SingleLine;
 
 @MaxLength(255)
 @Desc("单行的描述")
