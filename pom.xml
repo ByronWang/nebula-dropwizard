@@ -75,7 +75,7 @@
 		</dependency>
 		<dependency>
 			<groupId>nebula</groupId>
-			<artifactId>nebula-lang</artifactId>
+			<artifactId>nebula-define</artifactId>
 			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
