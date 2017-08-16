@@ -4,6 +4,7 @@ import com.nebula.dropwizard.health.TemplateHealthCheck;
 import com.nebula.dropwizard.resources.HelloWorldResource;
 
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -20,7 +21,7 @@ public class NebulaApplication extends Application<NebulaConfiguration> {
 
     @Override
     public void initialize(final Bootstrap<NebulaConfiguration> bootstrap) {
-        // TODO: application initialization
+    	bootstrap.addBundle(new AssetsBundle("/assets/", "/theme/"));
     }
 
     @Override
