@@ -10,10 +10,6 @@ server:
     port: 8080
 metrics:
   reporters:
-    - type: graphite
-      host: localhost
-      port: 22003
-      prefix: nebula-dropwizard
     - type: log
       logger: metrics
       markerName: nebula-dropwizard
